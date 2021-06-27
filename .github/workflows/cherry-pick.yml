@@ -1,0 +1,16 @@
+name: cherry-pick
+
+on: 
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  cherry-pick:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: cat README.md
+      - run: git diff $GITHUB_SHA
+      - uses: codebrick-corp/github-cherry-pick-action@test
+
